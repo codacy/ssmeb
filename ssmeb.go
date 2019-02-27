@@ -68,6 +68,9 @@ func main() {
 	flag.StringVar(&mode, "m", "get", "`mode` flag shorthand")
 
 	flag.Parse()
+	if input == "" {
+		log.Fatal("Missing mandatory argument: `input`")
+	}
 
 	fmt.Fprintln(os.Stderr, "-----------------------------------------")
 	fmt.Fprintln(os.Stderr, "input:       ", input)
@@ -76,9 +79,6 @@ func main() {
 	fmt.Fprintln(os.Stderr, "mode:        ", mode)
 	fmt.Fprintln(os.Stderr, "-----------------------------------------")
 
-	if input == "" {
-		log.Fatal("Missing mandatory argument: `input`")
-	}
 	parameters, err := readParametersFile(input, environment)
 	if err != nil {
 		log.Fatalf("Error reading file `%s`: %v", input, err)
