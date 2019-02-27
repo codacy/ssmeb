@@ -2,7 +2,6 @@ package main
 
 import (
 	"bufio"
-	"errors"
 	"flag"
 	"fmt"
 	"io/ioutil"
@@ -188,10 +187,6 @@ func setBeanstalkOptions(session *session.Session, parameters parameters) error 
 			text, err := reader.ReadString('\n')
 			if err != nil {
 				return err
-			}
-
-			if text == "\n" {
-				return errors.New("No value specified")
 			}
 			value = strings.Replace(text, "\n", "", -1)
 		} else {
